@@ -1,0 +1,459 @@
+<html lang="en">
+    <head>
+        <title>Authors Collective</title>
+        <meta name="description" content="A team you already know making content you already love." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+
+			:root {
+				--dark-purple: #1A1120;
+				--off-white: #ededed;
+				--brown-grey: #635255;
+				--coral: #d16f5a;
+				--blue: #2222ee;
+
+				--background-color: var(--off-white);
+				--text-color: var(--dark-purple);
+				--link-color: var(--blue);
+				--button-color: var(--coral);
+				--button-text-color: var(--off-white);
+			}
+
+			/* *
+			@media (prefers-color-scheme: dark) {
+				html {
+					color-scheme: dark;
+				}
+
+				:root {
+					--background-color: var(--dark-purple);
+					--text-color: var(--off-white);
+				}
+			}
+			/* */
+
+			* {
+				box-sizing: border-box;
+				padding: 0;
+				margin: 0;
+				outline: 0;
+				border: 0;
+			}
+
+			body {
+				line-height: 1.5;
+				-webkit-font-smoothing: antialiased;
+				max-width: 100vw;
+				overflow-x: hidden;
+				background-color: var(--background-color);
+				color: var(--text-color);
+				font-family: Inconsolata;
+			}
+
+			a {
+				color: inherit;
+				cursor: pointer;
+			}
+
+			a.button {
+				background-color: var(--button-color);
+				border: 5px solid var(--button-color);
+				display: inline-block;
+				padding: 15px;
+				border-radius: 3px;
+				transition: all 0.3s;
+				font-weight: bold;
+				color: var(--button-text-color);
+				font-size: 3vh;
+				text-decoration: none;
+			}
+
+			a.button:hover {
+				background-color: inherit;
+				color: var(--button-color);
+			}
+
+			a:not(.button) {
+				color: var(--link-color);
+			}
+
+			img, picture, video, canvas, svg {
+				display: block;
+				max-width: 100%;
+			}
+
+			input, button, textarea, select {
+				font: inherit;
+			}
+
+			p, h1, h2, h3, h4, h5, h6 {
+				overflow-wrap: break-word;
+			}
+
+			#root, #__next {
+				isolation: isolate;
+			}
+
+			section {
+				padding: 5vmin;
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				align-items: start;
+				position: relative;
+			}
+
+			@media (max-width: 800px) {
+				section {
+					align-items: center;
+					text-align: center;
+				}
+			}
+
+			.divider {
+				width: 60%;
+				margin: 0 20%;
+				height: 0px;
+				border: 1px solid var(--text-color);
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+
+			h1 {
+				font-size: 10vh;
+			}
+
+			h2 {
+				font-size: 4vh;
+			}
+
+			h3 {
+				font-size: 3vh;
+			}
+
+			.hexagon::before {
+				content: '';
+				background: var(--text-color);
+				position: absolute;
+				left: -3px;
+				top: -3px;
+				width: calc(100% + 6px);
+				height: calc(100% + 6px);
+				clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+			}
+
+			.hexagon {
+				filter: grayscale(100%);
+				aspect-ratio: 1.155;
+				position: relative;
+			}
+
+			.hexagon > img {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				object-fit: cover;
+				clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+			}
+
+			.personCard {
+				height: 27vh;
+				width: 100%;
+				max-width: 28vmin;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				margin: auto;
+			}
+
+			.personCard > .hexagon {
+				width: 100%;
+				max-width: 20vh;
+			}
+
+			.personCard > .name {
+				font-size: 3vmin;
+				margin-right: auto;
+				margin-top: 1vh;
+				line-height: 1em;
+			}
+
+			.personCard > .company {
+				font-size: 2vmin;
+				margin-left: auto;
+			}
+
+			.personCard > .name, .personCard > .company {
+				white-space: nowrap;
+				overflow-x: hidden;
+				text-overflow: ellipsis;
+				max-width: 100%;
+			}
+
+			footer {
+				padding: 4vw;
+			    text-align: center;
+			}
+
+			#hero {
+				height: 100vh;
+			}
+
+			#testimonials {
+				align-items: center;
+				text-align: center;
+				min-height: 100vh;
+			}
+
+			#testimonialContainer {
+				display: flex;
+				justify-content: space-around;
+				align-items: stretch;
+				width: 90%;
+			}
+
+			.testimonial {
+				width: 30%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.testimonial > div:first-child {
+				flex: 1;
+				margin-bottom: 20px;
+			}
+
+			.quoteContext {
+				font-size: 2vh;
+				line-height: 1.2em;
+				margin-top: 1em;
+			}
+
+			#memberContainer {
+				display: grid;
+				grid: auto / repeat(12, 1fr);;
+			    justify-content: center;
+			    width: 100%;
+			    align-items: center;
+			}
+
+			@media (min-width: 800px) {
+				#memberContainer > div {
+					grid-column: span 3;
+				}
+
+				#memberContainer > div:nth-child(7n),
+				#memberContainer > div:nth-child(7n-1),
+				#memberContainer > div:nth-child(7n-2) {
+					grid-column: span 4;
+				}
+			}
+
+			/* */
+			@media (max-width: 800px) {
+				#memberContainer > div {
+					grid-column: span 4;
+				}
+
+				#memberContainer > div:nth-child(5n),
+				#memberContainer > div:nth-child(5n-1){
+					grid-column: span 6;
+				}
+
+				#memberContainer > div:last-child {
+					display: none;
+				}
+			}
+			/* */
+
+			#explanation > img {
+				width: 40%;
+			}
+
+			#explanationRightColumn {
+				width: 60%;
+				min-height: 70vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				align-items: center;
+				padding: 0 3vw;
+			}
+
+			@media (min-width: 800px) { /* on desktop */
+				#explanation {
+					flex-direction: row;
+				}
+			}
+
+			@media (max-width: 800px) { /* on mobile */
+				#explanation > img {
+					margin-bottom: 5vh;
+					width: 70%;
+				}
+
+				#explanationRightColumn {
+					width: 100%;
+				}
+			}
+		</style>
+    </head>
+
+    <body>
+        <section id="hero">
+            <h1>We are the Authors Collective.</h1>
+            <h2>A team you already know making content you already love.</h2>
+            <a class="button" href="mailto:sales@authorscollective.org">Get in touch with us &rarr;</a>
+            <div class="divider"></div>
+        </section>
+
+        <section id="testimonials">
+            <h2>What some folks have had to say about us:</h2>
+
+            <div id="testimonialContainer">
+                <aside class="testimonial">
+                    <div>
+                        <span class="quote">"Actually one of the best genuine attempts at explaining Jamstack I've seen in years. Nicely done"</span>
+                        <span class="quoteContext">About <a href="https://www.takeshape.io/articles/the-jamstack-identity-crisis-an-even-handed-overview/">TakeShape's review of the Jamstack identity crisis</a></span>
+                    </div>
+
+                    <div class="personCard">
+                        <div class="hexagon"><img src="/images/shawn-wang.webp" /></div>
+                        <span class="name">Sean Wang</span>
+                        <span class="company">Temporal.io</span>
+                    </div>
+                </aside>
+
+                <aside class="testimonial">
+                    <div>
+                        <span class="quote">"You're solving a good problem here - awesome!"</span>
+                        <span class="quoteContext">About our <a href="https://www.algolia.com/blog/engineering/designing-a-search-experience-part-1-orange-a-tech-company-famous-for-their-jphones">work</a> <a href="https://www.algolia.com/blog/engineering/why-you-should-capture-click-and-conversion-events-from-day-one">with</a> <a href="https://www.raymondcamden.com/2022/08/09/how-to-migrate-from-lunr-to-algolia-a-technical-guide">Algolia</a></span>
+                    </div>
+
+                    <div class="personCard">
+                        <div class="hexagon"><img src="/images/scott-mathson.webp" /></div>
+                        <span class="name">Scott Mathson</span>
+                        <span class="company">Plink, formerly Algolia</span>
+                    </div>
+                </aside>
+
+                <aside class="testimonial">
+                    <div>
+                        <span class="quote">"Thank you SO MUCH @jbaptista!! And kudos to you for taking on Hugo!"</span>
+                        <span class="quoteContext">About the <a href="https://developers.mattermost.com/contribute/">Mattermost Contributor Guide</a></span>
+                    </div>
+
+                    <div class="personCard">
+                        <div class="hexagon"><img src="/images/carrie-warner.webp" /></div>
+                        <span class="name">Carrie Warner</span>
+                        <span class="company">Mattermost</span>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="divider"></div>
+        </section>
+
+        <section id="members">
+            <h2>Who we are</h2>
+            <h3>We've got dozens of members, but here's a few:</h3>
+
+            <div id="memberContainer">
+                <div class="personCard">
+                    <div class="hexagon"><img src="/images/ashley-huynh.webp" /></div>
+                    <span class="name">Ashley Huynh</span>
+                    <span class="company">Slack, formerly Mux, Mailchimp</span>
+                </div>
+
+                <div class="personCard">
+                    <div class="hexagon"><img src="/images/joy-kaufman.webp" /></div>
+                    <span class="name">Joy Kaufman</span>
+                    <span class="company">PostScript.io, formerly RedHat</span>
+                </div>
+
+                <div class="personCard">
+                    <div class="hexagon"><img src="/images/anthony-campolo.webp" /></div>
+                    <span class="name">Anthony Campolo</span>
+                    <span class="company">Edgio, Redwood.js</span>
+                </div>
+
+                <div class="personCard">
+                    <div class="hexagon"><img src="/images/rizel-scarlett.webp" /></div>
+                    <span class="name">Rizel Scarlett</span>
+                    <span class="company">TBD, formerly GitHub</span>
+                </div>
+
+                <div class="personCard">
+                    <div class="hexagon"><img src="/images/raymond-camden.webp" /></div>
+                    <span class="name">Raymond Camden</span>
+                    <span class="company">Adobe, formerly HERE</span>
+                </div>
+
+                <div class="personCard">
+                    <div class="hexagon"><img src="/images/mike-liendo.webp" /></div>
+                    <span class="name">Mike Liendo</span>
+                    <span class="company">AWS Amplify</span>
+                </div>
+
+                <div class="personCard">
+                    <div class="hexagon"><img src="/images/ceora-ford.webp" /></div>
+                    <span class="name">Ceora Ford</span>
+                    <span class="company">Auth0, formerly Apollo</span>
+                </div>
+
+                <div class="personCard">
+                    <div class="hexagon"><img src="/images/ben-holmes.webp" /></div>
+                    <span class="name">Ben Holmes</span>
+                    <span class="company">Astro, formerly Peloton</span>
+                </div>
+
+                <div class="personCard">
+                    <div class="hexagon"><img src="/images/shaundai-person.webp" /></div>
+                    <span class="name">Shaundai Person</span>
+                    <span class="company">Netflix</span>
+                </div>
+
+                <div class="personCard">
+                    <div class="hexagon"><img src="/images/kevin-powell.webp" /></div>
+                    <span class="name">Kevin Powell</span>
+                    <span class="company">CSS YouTuber</span>
+                </div>
+
+                <div class="personCard">
+                    <div class="hexagon"><img src="/images/emma-wain.webp" /></div>
+                    <span class="name">Emma Wain</span>
+                    <span class="company">Jamstack Influencer</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="explanation">
+            <img src="/images/publishing-cycle.webp" />
+
+            <div id="explanationRightColumn">
+                <h2>High-quality content by seasoned professionals</h2>
+                <h3>This isn't our first rodeo.</h3>
+                <p>With the Authors Collective, you can be as hands-on or hands-off as you like. It's technical writing, video-editing, natural-language-translation, product marketing, community auditing, and course-teaching, just without all the babysitting and handholding. We'll handle as much as you're comfortable with, from dreaming up the best ideas to sending the final piece off into the world.</p>
+                <a class="button" href="mailto:sales@authorscollective.org">Get started</a>
+            </div>
+
+            <div class="divider"></div>
+        </section>
+
+        <footer>
+            <p>Want to join as a vendor or an author? Give us a ring at <a href="mailto:sales@authorscollective.org">sales@authorscollective.org</a>!</p>
+            <p>Organized from South Carolina and Louisiana; content created from all over the world.</p>
+            <p>All rights reserved. &copy; 2024 Authors Collective LLC</p>
+        </footer>
+    </body>
+</html>
